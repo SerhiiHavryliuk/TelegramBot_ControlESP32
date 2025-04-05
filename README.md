@@ -1,6 +1,9 @@
 # TelegramBot_ControlESP32
 This code shows how to control the ESP32 GPIOs from anywhere in the world using Telegram.
 
+Esp32 ttgo LilyGo T-Dispaly
+Do not use 2, 12 pins for rele/
+
 05.04.2025 (PolygonAjaxRebootHubs_bot branch)
   Serhii - copy project https://RandomNerdTutorials.com/telegram-control-esp32-esp8266-nodemcu-outputs/
 
