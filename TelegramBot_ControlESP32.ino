@@ -1,6 +1,8 @@
 /*
-  Serhii - copy project
-  Rui Santos - Complete project details at https://RandomNerdTutorials.com/telegram-control-esp32-esp8266-nodemcu-outputs/
+  Serhii: 
+  Device ver 2025.0
+  Release day: 05.04.2025
+  Copy project: Rui Santos - Complete project details at https://RandomNerdTutorials.com/telegram-control-esp32-esp8266-nodemcu-outputs/
   
   Project created using Brian Lough's Universal Telegram Bot Library: https://github.com/witnessmenow/Universal-Arduino-Telegram-Bot
   Example based on the Universal Arduino Telegram Bot Library: https://github.com/witnessmenow/Universal-Arduino-Telegram-Bot/blob/master/examples/ESP8266/FlashLED/FlashLED.ino
@@ -40,8 +42,16 @@ UniversalTelegramBot bot(BOTtoken, client);
 int botRequestDelay = 1000;
 unsigned long lastTimeBotRan;
 
-const int ledPin = 2;
-bool ledState = LOW;
+const int hubPin_1 = 13;
+const int hubPin_2 = 27;
+const int hubPin_3 = 26;
+const int hubPin_4 = 25;
+const int hubPin_5 = 15;
+const int hubPin_6 = 17;
+const int hubPin_7 = 22;
+const int hubPin_8 = 21;
+
+// bool hubState_1 = HIGH; // за замовчанням реле викл
 
 // Handle what happens when you receive new messages
 void handleNewMessages(int numNewMessages) {
@@ -65,46 +75,103 @@ void handleNewMessages(int numNewMessages) {
     if (text == "/start") {
       String welcome = "Welcome, " + from_name + ".\n";
       welcome += "Use the following commands to control your outputs.\n\n";
-      welcome += "/led_on to turn GPIO ON \n";
-      welcome += "/led_off to turn GPIO OFF \n";
-      welcome += "/state to request current GPIO state \n";
+      welcome += "/reboot_hub_1 to reboot Hub 1 \n";
+      welcome += "/reboot_hub_2 to reboot Hub 2 \n";
+      welcome += "/reboot_hub_3 to reboot Hub 3 \n";
+      welcome += "/reboot_hub_4 to reboot Hub 4 \n";
+      welcome += "/reboot_hub_5 to reboot Hub 5 \n";
+      welcome += "/reboot_hub_6 to reboot Hub 6 \n";
+      welcome += "/reboot_hub_7 to reboot Hub 7 \n";
+      welcome += "/reboot_hub_8 to reboot Hub 8 \n";
+      welcome += "/reboot_all to reboot all Hubs \n";
       bot.sendMessage(chat_id, welcome, "");
     }
 
-    if (text == "/led_on") {
-      bot.sendMessage(chat_id, "LED state set to ON", "");
-      ledState = HIGH;
-      digitalWrite(ledPin, ledState);
+    if (text == "/reboot_hub_1") {
+      rebootHub(1, hubPin_1, chat_id);
     }
-    
-    if (text == "/led_off") {
-      bot.sendMessage(chat_id, "LED state set to OFF", "");
-      ledState = LOW;
-      digitalWrite(ledPin, ledState);
+    if (text == "/reboot_hub_2") {
+      rebootHub(2, hubPin_2, chat_id);
     }
-    
-    if (text == "/state") {
-      if (digitalRead(ledPin)){
-        bot.sendMessage(chat_id, "LED is ON", "");
-      }
-      else{
-        bot.sendMessage(chat_id, "LED is OFF", "");
-      }
+    if (text == "/reboot_hub_3") {
+      rebootHub(3, hubPin_3, chat_id);
     }
+    if (text == "/reboot_hub_4") {
+      rebootHub(4, hubPin_4, chat_id);
+    }
+    if (text == "/reboot_hub_5") {
+      rebootHub(5, hubPin_5, chat_id);
+    }
+    if (text == "/reboot_hub_6") {
+      rebootHub(6, hubPin_6, chat_id);
+    }
+    if (text == "/reboot_hub_7") {
+      rebootHub(7, hubPin_7, chat_id);
+    }
+    if (text == "/reboot_hub_8") {
+      rebootHub(8, hubPin_8, chat_id);
+    } 
+    if (text == "/reboot_all") {
+      rebootHub(1, hubPin_1, chat_id);
+      rebootHub(2, hubPin_2, chat_id);
+      rebootHub(3, hubPin_3, chat_id);
+      rebootHub(4, hubPin_4, chat_id);
+      rebootHub(5, hubPin_5, chat_id);
+      rebootHub(6, hubPin_6, chat_id);
+      rebootHub(7, hubPin_7, chat_id);
+      rebootHub(8, hubPin_8, chat_id);
+    } 
   }
+}
+
+void rebootHub(int hubNumber, int hubPin, String chat_ID){
+  String telegramMessage = "Kurwa bobr! Hub " + String(hubNumber) + " start reboot ... 😏";
+  bot.sendMessage(chat_ID, telegramMessage, "");
+
+  // натискаємо (вимикаємо хаб)
+  digitalWrite(hubPin, LOW);
+  delay(5000);
+  // відтискаємо
+  digitalWrite(hubPin, HIGH);
+  delay(5000);
+
+  // натискаємо (вкл хаб)
+  digitalWrite(hubPin, LOW);
+  delay(2000);
+  // відтискаємо
+  digitalWrite(hubPin, HIGH);
+  delay(5000);
+
+  telegramMessage = "Hub " + String(hubNumber) + " rebooted! Enjoy  🎉";
+  bot.sendMessage(chat_ID, telegramMessage, "");
+}
+
+// Реле управляється GND, тобто щоб спрацювало реле треба подати мінус
+// тому за замовчанням подаємо + (HIGH), щоб реле не мпрацьовувало
+void initPinRele(int hubPin){
+  pinMode(hubPin, OUTPUT);
+  digitalWrite(hubPin, HIGH);
 }
 
 void setup() {
   Serial.begin(115200);
+  Serial.println("Serhii:  device ver 2025.0");
+  Serial.println("Serhii: for start bot use /start - return all comands in telegram");
 
   #ifdef ESP8266
     configTime(0, 0, "pool.ntp.org");      // get UTC time via NTP
     client.setTrustAnchors(&cert); // Add root certificate for api.telegram.org
   #endif
 
-  pinMode(ledPin, OUTPUT);
-  digitalWrite(ledPin, ledState);
-  
+  initPinRele(hubPin_1);
+  initPinRele(hubPin_2);
+  initPinRele(hubPin_3);
+  initPinRele(hubPin_4);
+  initPinRele(hubPin_5);
+  initPinRele(hubPin_6);
+  initPinRele(hubPin_7);
+  initPinRele(hubPin_8);
+
   // Connect to Wi-Fi
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
