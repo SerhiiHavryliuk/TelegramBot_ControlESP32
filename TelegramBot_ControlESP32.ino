@@ -130,10 +130,10 @@ void rebootHub(int hubNumber, int hubPin, String chat_ID){
 
   // натискаємо (вимикаємо хаб)
   digitalWrite(hubPin, LOW);
-  delay(5000);
+  delay(10000);
   // відтискаємо
   digitalWrite(hubPin, HIGH);
-  delay(5000);
+  delay(10000);
 
   // натискаємо (вкл хаб)
   digitalWrite(hubPin, LOW);
