@@ -1,20 +1,30 @@
 # TelegramBot_ControlESP32
 This code shows how to control the ESP32 GPIOs from anywhere in the world using Telegram.
 
-05.04.2025 (main branch)
+05.04.2025 (PolygonAjaxRebootHubs_bot branch)
   Serhii - copy project https://RandomNerdTutorials.com/telegram-control-esp32-esp8266-nodemcu-outputs/
 
 ### Telegram commands:
-  /start
+  /start returns all command
 
 ### Message:
 
-Welcome, Сергій.
-
 Use the following commands to control your outputs.
 
-/led_on to turn GPIO ON 
+/reboot_hub_1 to reboot Hub 1 
 
-/led_off to turn GPIO OFF 
+/reboot_hub_2 to reboot Hub 2 
 
-/state to request current GPIO stat
+/reboot_hub_3 to reboot Hub 3 
+
+/reboot_hub_4 to reboot Hub 4 
+
+/reboot_hub_5 to reboot Hub 5 
+
+/reboot_hub_6 to reboot Hub 6 
+
+/reboot_hub_7 to reboot Hub 7 
+
+/reboot_hub_8 to reboot Hub 8
+
+/reboot_all to reboot all Hubs
