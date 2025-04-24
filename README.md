@@ -30,7 +30,13 @@ Use the following commands to control your outputs.
 
 /reboot_hub_8 to reboot Hub 8
 
-/reboot_all to reboot all Hubs
+/reboot_all_hubs to reboots all Hubs one by one
+
+/reboot_computer to reboot computer
+
+#### Device version
+##### - ver 2025.0 - aad 8 rele for reboot hubs
+##### - ver 2025.1 - aad 1 rele for reboot computer
 
 
 
@@ -45,3 +51,13 @@ Use the following commands to control your outputs.
 Треба прописати ід всіх юзерів, кому є доступ!
 todo: хотів додавати бота у спільний чаті з чату керувати ботом. Поки не вийшло! 
 Бот висне, після відправки одного повідомлення. Допомогло тільки видалення та створення бота заново.
+
+## Universal Telegram Bot Library
+To interact with the Telegram bot, we’ll use the Universal Telegram Bot Library https://github.com/witnessmenow/Universal-Arduino-Telegram-Bot created by Brian Lough that provides an easy interface for the Telegram Bot API.
+
+Follow the next steps to install the latest release of the library.
+
+Click here to download the Universal Arduino Telegram Bot library.
+Go to Sketch > Include Library > Add.ZIP Library...
+Add the library you’ve just downloaded.
+And that’s it. The library is installed.
