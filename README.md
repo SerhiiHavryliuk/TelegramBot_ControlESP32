@@ -4,7 +4,7 @@ This code shows how to control the ESP32 GPIOs from anywhere in the world using 
 Esp32 ttgo LilyGo T-Dispaly
 Do not use 2, 12 pins for rele
 
-05.04.2025 (PolygonAjaxRebootHubs_bot branch)
+05.04.2025 - start progect (PolygonAjaxRebootHubs_bot branch)
   Serhii - copy project https://RandomNerdTutorials.com/telegram-control-esp32-esp8266-nodemcu-outputs/
 
 ### Telegram commands:
@@ -35,9 +35,13 @@ Use the following commands to control your outputs.
 /reboot_computer to reboot computer
 
 #### Device version
-##### - ver 2025.0 - aad 8 rele for reboot hubs
-##### - ver 2025.1 - aad 1 rele for reboot computer
-
+##### - ver 2025.0 (05.04.2025)
+  - add 8 rele for reboot hubs
+##### - ver 2025.1 (25.04.2025) 
+  - add 1 rele for reboot computer
+##### - ver 2025.2 (26.04.2025)
+  - додано підключення до іншої мережі у разі недоступності основної мережі при старті. 
+  - Додано перепідключення до іншої мережі якщо основна мережа зникла.
 
 
 ### Помилка Unauthorized user виникає ось тут:
