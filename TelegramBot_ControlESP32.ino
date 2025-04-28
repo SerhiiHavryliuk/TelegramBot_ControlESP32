@@ -187,9 +187,8 @@ void rebootComputer(int compPin, String chat_ID){
   delay(2000);
 
   // розмикаємо
-  digitalWrite(hubPin, HIGH);
+  digitalWrite(compPin, HIGH);
   delay(28000);
-  
 
   telegramMessage = "✅ Computer rebooted! Enjoy  🎉";
   bot.sendMessage(chat_ID, telegramMessage, "");
@@ -239,8 +238,6 @@ bool connectToWiFi() {
   return false;
 }
 
-
-
 void setup() {
   Serial.begin(115200);
   Serial.println("Serhii:  device ver 2025.3");
@@ -267,10 +264,6 @@ void setup() {
   client.setCACert(TELEGRAM_CERTIFICATE_ROOT);  // Add root certificate for api.telegram.org
 #endif
 }
-
-
-
-
 
 void loop() {
   if (WiFi.status() != WL_CONNECTED) {
