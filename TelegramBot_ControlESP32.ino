@@ -1,6 +1,6 @@
 /*
   Serhii: 
-  Device ver 2025.3
+  Device ver 2025.4
   Release day: 05.04.2025
   Copy project: Rui Santos - Complete project details at https://RandomNerdTutorials.com/telegram-control-esp32-esp8266-nodemcu-outputs/
   
@@ -65,8 +65,7 @@ const int hubPin_4 = 25;
 const int hubPin_5 = 15;
 const int hubPin_6 = 17;
 const int hubPin_7 = 22;
-const int hubPin_8 = 21;
-const int computerPin = 27;
+const int computerPin = 21;
 
 // Handle what happens when you receive new messages
 void handleNewMessages(int numNewMessages) {
@@ -104,10 +103,9 @@ void handleNewMessages(int numNewMessages) {
       welcome += "/reboot_hub_5 to reboot Hub 5 \n";
       welcome += "/reboot_hub_6 to reboot Hub 6 \n";
       welcome += "/reboot_hub_7 to reboot Hub 7 \n";
-      welcome += "/reboot_hub_8 to reboot Hub 8 \n";
       welcome += "/reboot_all_hubs to reboots all Hubs one by one \n";
       welcome += "/reboot_computer to reboot computer \n";
-      welcome += " © Powered by Intrusion Team, ver 2025.3\n";
+      welcome += " © Powered by Intrusion Team, ver 2025.4\n";
       bot.sendMessage(chat_id, welcome, "");
     }
 
@@ -132,9 +130,6 @@ void handleNewMessages(int numNewMessages) {
     if (text == "/reboot_hub_7") {
       rebootHub(7, hubPin_7, chat_id);
     }
-    if (text == "/reboot_hub_8") {
-      rebootHub(8, hubPin_8, chat_id);
-    }
     if (text == "/reboot_all_hubs") {
       String telegramMessage = "Start reboot All hubs 🙉";
       bot.sendMessage(chat_id, telegramMessage, "");
@@ -145,7 +140,7 @@ void handleNewMessages(int numNewMessages) {
       rebootHub(5, hubPin_5, chat_id);
       rebootHub(6, hubPin_6, chat_id);
       rebootHub(7, hubPin_7, chat_id);
-      rebootHub(8, hubPin_8, chat_id);
+     
       telegramMessage = " All hubs reboted. Enjoy 🎉";
       bot.sendMessage(chat_id, telegramMessage, "");
     } if (text == "/reboot_computer") {
@@ -240,7 +235,7 @@ bool connectToWiFi() {
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("Serhii:  device ver 2025.3");
+  Serial.println("Serhii:  device ver 2025.4");
   Serial.println("Serhii: for start bot use /start - return all comands in telegram");
 
 #ifdef ESP8266
@@ -255,7 +250,6 @@ void setup() {
   initPinRele(hubPin_5);
   initPinRele(hubPin_6);
   initPinRele(hubPin_7);
-  initPinRele(hubPin_8);
   initPinRele(computerPin);
 
   connectToWiFi();
